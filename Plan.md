@@ -1,7 +1,7 @@
 May 27th 2026 
 Languages and Frameworks 
 C# 
-MVC / .NET 
+MVC / .NET Core 
 
 Hosting: 
 Azure
