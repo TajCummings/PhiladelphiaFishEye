@@ -1,3 +1,16 @@
+using Classes;
+using System;
+using System.IO;
+
+// 1. Logic from your copy-paste
+Console.WriteLine("Starting the application..."); 
+// Note: ReadLine will pause the web server startup until you press Enter in the terminal
+var nameTest = Console.ReadLine(); 
+
+var account = new Guess("Taj", "5/25/2026");
+Console.WriteLine($"User {account.UserName} was created with Guess {account.GuessDate}");
+
+// 2. Web Application Setup
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,7 +22,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -24,6 +36,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
