@@ -1,0 +1,55 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+//Not sure if we'll need a join table?
+Table roles_types{
+  role_id integer [primary key]
+  role_name varchar(50) [not null]
+  role_description varchar(255)
+}
+
+//Considered adding favorie locaion as a field
+Table locations{
+  location_id integer [primary key]
+  location_name varchar(50)
+  location_zip char(5) [Note : 'location would never have leading zero']
+
+}
+
+Table users {
+  userid guid [primary key]
+  role_id integer
+  preferred_location_id integer
+  username varchar(255) [not null, unique]
+  created_at timestamp
+  zip_code char(5)
+}
+
+//This defines the foreign key relationships user.role has a many to 1 relationship with roles_types
+//The > in Ref: "users"."role_id" > "roles_types"."role_id" indicates a many to 1 relationship
+Ref: "users"."role_id" > "roles_types"."role_id"
+
+Ref: "users"."preferred_location_id" > "locations"."location_id"
+
+//Dummy data for locations
+Records locations(location_id, location_name, location_zip){
+ 1, 'GradHospital','19145'
+ 2, 'Fishtown', '29405'
+}
+
+//Dummy data for roles_types
+Records roles_types(role_id, role_name, role_description){
+  1,'Guesser','One who makes a guess'
+  2,'Ref','One who confirms the guess'
+  4,'Admin','One who administrates the guess'
+}
+
+//Dummy data for users
+Records users(userid, role_id, preferred_location_id,username,created_at,zip_code) {
+  0, 1, 1, 'GlizzyAustin','2026-06-11','19146'
+  1, 2, 1, 'BinglesClown','2026-06-11','29406'
+  2, 4, 1, 'GymCODER','2026-06-11','19146'
+}
+
+//ROleID 1 = Guesser Role ID 2 = Ref Role_ID 3 = Guest, Role ID 4 = Admin
+//Location 1 = GradHospital 2 = Fishtown
