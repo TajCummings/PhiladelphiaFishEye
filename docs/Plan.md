@@ -13,7 +13,8 @@ Inputs from Guesser
 
 
 
-Databse:
+Databse: --check docs/database.dbnl
+
 Users : Viewers 
 Guesser (Prime)
 Referree - someone who can validate 
@@ -28,5 +29,8 @@ Erp from Christiner
 
 Future:
 Email Verification - scrape date fromm email 
-Guess against Machine Learning  --> ML that uses past actuals to make predictions and possibly austins to track when he was wrong 
 
+Guess against Machine Learning  --> ML that uses past actuals to make predictions and possibly austins to track when he was wrong
+
+Maybe:
+Map features based on zip code
