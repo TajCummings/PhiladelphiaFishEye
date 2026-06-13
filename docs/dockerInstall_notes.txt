@@ -1,0 +1,23 @@
+--Creating notes for what I did for others who did not see
+- NOte that all of this is getting updayed
+
+1.docker run --name tacotracker-db \
+  -e POSTGRES_USER=<username> \
+  -e POSTGRES_PASSWORD=<password> \
+  -e POSTGRES_DB=<database_name> \
+  -p 5432:5432 \
+  -d postgres
+2.Terminal: run the following command to verify the container is running
+    -docker ps
+3.Add the following to your
+appsettings.json {
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=<database_name>;Username=<username>;Password=<password>"
+  }
+}
+
+
+--Next steps: 6/12
+Install Entity Framework Core
+Create a migration
+Update  Program.cs
