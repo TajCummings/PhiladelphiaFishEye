@@ -21,3 +21,21 @@ appsettings.json {
 Install Entity Framework Core
 Create a migration
 Update  Program.cs
+
+
+6/14
+To add Entity Framework Core: In terminal:
+
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+6/15
+Running first migration
+docker start tacotracker-db
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+//migrations add creates a new Migrations folder in your project with the SQL blueprint
+//database update actually runs that SQL against your Postgres database and creates the Guesses table
