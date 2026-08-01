@@ -13,11 +13,10 @@ Table locations{
   location_id integer [primary key]
   location_name varchar(50)
   location_zip char(5) [Note : 'location would never have leading zero']
-
 }
 
 Table users {
-  userid guid [primary key]
+  userid uuid [primary key, default: `gen_random_uuid()`]
   role_id integer
   preferred_location_id integer
   username varchar(255) [not null, unique]
@@ -25,11 +24,18 @@ Table users {
   zip_code char(5)
 }
 
+Table guesses {
+  id integer [primary key, increment]
+  userid uuid [not null]
+  guessed_date timestamp [not null]
+  actual_date timestamp
+}
+
 //This defines the foreign key relationships user.role has a many to 1 relationship with roles_types
 //The > in Ref: "users"."role_id" > "roles_types"."role_id" indicates a many to 1 relationship
 Ref: "users"."role_id" > "roles_types"."role_id"
-
 Ref: "users"."preferred_location_id" > "locations"."location_id"
+Ref: "guesses"."userid" > "users"."userid"
 
 //Dummy data for locations
 Records locations(location_id, location_name, location_zip){
@@ -41,15 +47,15 @@ Records locations(location_id, location_name, location_zip){
 Records roles_types(role_id, role_name, role_description){
   1,'Guesser','One who makes a guess'
   2,'Ref','One who confirms the guess'
+  3,'Guest','One who can view but not submit guesses'
   4,'Admin','One who administrates the guess'
 }
 
 //Dummy data for users
 Records users(userid, role_id, preferred_location_id,username,created_at,zip_code) {
-  0, 1, 1, 'GlizzyAustin','2026-06-11','19146'
-  1, 2, 1, 'BinglesClown','2026-06-11','29406'
-  2, 4, 1, 'GymCODER','2026-06-11','19146'
+  '46990890-33b4-4d18-b994-c03595c32df2', 1, 1, 'GlizzyAustin','2026-06-11','19146'
+  '68ec3d0a-6cbb-40b1-9b15-2b8827cc6d9d', 2, 1, 'BinglesClown','2026-06-11','29406'
+  '3a15f18b-90a7-485d-bdb9-0aeab0e63df0', 4, 1, 'GymCODER','2026-06-11','19146'
 }
-
-//ROleID 1 = Guesser Role ID 2 = Ref Role_ID 3 = Guest, Role ID 4 = Admin
+//Role ID 1 = Guesser, Role ID 2 = Ref, Role ID 3 = Guest, Role ID 4 = Admin
 //Location 1 = GradHospital 2 = Fishtown

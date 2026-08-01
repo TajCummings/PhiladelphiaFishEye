@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Add EF Core with Postgres ← ADD THIS HERE
+// Add EF Core with Postgres
 builder.Services.AddDbContext<TacoTrackerContext>(options =>
     options.UseNpgsql(builder.Configuration
         .GetConnectionString("DefaultConnection")));
