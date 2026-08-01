@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: tacotracker-db
+    environment:
+      POSTGRES_USER: tacouser
+      POSTGRES_PASSWORD: tacopass
+      POSTGRES_DB: tacotracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - tacotracker-data:/var/lib/postgresql/data
+
+volumes:
+  tacotracker-data:
