@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="dollytacotracker.client/dollytacotracker.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="DollyTacoTracker.Server/DollyTacoTracker.Server.csproj" />
+</Solution>
