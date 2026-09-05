@@ -18,7 +18,7 @@ bash
    dotnet ef dbcontext scaffold "Host=localhost;Port=5432;Database=tacotracker;Username=tacouser;Password=tacopass" Npgsql.EntityFrameworkCore.PostgreSQL -o Models -f
 This generates model classes + a new DbContext matching your actual schema, in the Models/ folder.
 
-Option B: Manual translation Just hand-write the C# classes to match what's in the DBML, then run dotnet ef migrations add as usual. More tedious for 20 columns, but no extra tooling and more control over naming/conventions.
+Option B: Manual translationJust hand-write the C# classes to match what's in the DBML, then run dotnet ef migrations add as usual. More tedious for 20 columns, but no extra tooling and more control over naming/conventions.
 Given you specifically mentioned needing new classes for a bunch of new columns, Option A will save you real time. Want to paste your database.dbml content here so I can see what schema you're targeting, and I can help you go through this concretely?
 How EF Core tracks primary keys
 By convention (no attributes/config needed), EF Core looks for a property named:
